@@ -1,1 +1,7 @@
-<script>window.location.replace("singlife://?screen=CashIn");</script>
+<script>
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    alert(params.userId)
+    window.location.replace(`singlife://?screen=CashIn&${params.userId}`);
+</script>
