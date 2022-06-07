@@ -1,12 +1,19 @@
-<!-- <script>
+<script>
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    window.location.replace(`exp://192.168.1.8:19000/--/${params.screen}?action=${params.action}`);
+</script>
+
+<!-- 
+<script>
     const params = new Proxy(new URLSearchParams(window.location.search), {
         get: (searchParams, prop) => searchParams.get(prop),
     });
     window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`);
-</script>
- -->
+</script> -->
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,4 +24,4 @@
 <body>
     <a href="exp://192.168.1.8:19000/--/wallet?action=card-activation">Test</a>
 </body>
-</html>
+</html> -->
