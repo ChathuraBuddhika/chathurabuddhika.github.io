@@ -5,7 +5,7 @@
     console.log(clickedTime);
     console.log(clickedTime + timeToWait);
     function validateAppInstallation() {
-        console.log("validateAppInstallation");
+        console.log("validateAppInstallation", ((new Date().getTime()) - clickedTime < timeToWait));
         const now = new Date().getTime();
         if (now - clickedTime < timeToWait) {
             console.log("validateAppInstallation: too soon");
