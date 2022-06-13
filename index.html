@@ -5,6 +5,7 @@
     function validateAppInstallation() {
         const now = new Date().getTime();
         if (now - clickedTime < (timeToWait + 100)) {
+            console.log(navigator.platform)
             if(['iPad', 'iPhone', 'iPod'].indexOf(navigator.platform) >= 0){
                 window.location = "https://apps.apple.com/sg/app/singlife-invest-save-insure/id1485702405"; 
             }else{
