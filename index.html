@@ -4,8 +4,10 @@
     const timeToWait = 500;
 
     function validateAppInstallation() {
+        console.log("validateAppInstallation");
         const now = new Date().getTime();
         if (now - clickedTime < timeToWait) {
+            console.log("validateAppInstallation: too soon");
             window.location = "https://play.google.com/store/apps/details?id=com.singlife.mobile"; 
         }
     }
@@ -17,5 +19,5 @@
     });
     
     window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`);
-    
+
 </script>
