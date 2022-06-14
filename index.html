@@ -15,24 +15,18 @@
 
     // Check DeepLink App Reachability
     function checkDeepLinkCanReach() {
-        console.log('Checking DeepLink App Reachability');
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
         const request = new XMLHttpRequest();
         request.open('GET', `singlifeph://--/${params.screen}?action=${params.action}`, false);
         request.onload = function () {
-            console.log(request);
             if (request.status >= 200 && request.status < 400) {
                 // Success!
-                // appRedirection();
-                alert('App is installed');
-                console.log('App is installed');
+                appRedirection(params.screen, params.action);
             } else {
-                alert('App is not installed');
-                console.log('App is not installed');
                 // We reached our target server, but it returned an error
-                // storeRedirection();
+                storeRedirection();
             }
         };
     }
