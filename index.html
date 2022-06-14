@@ -1,24 +1,38 @@
 <script>
-
-    const clickedTime = new Date().getTime();
-    const timeToWait = 500;
-    function validateAppInstallation() {
-        const now = new Date().getTime();
-        if (now - clickedTime < (timeToWait + 100)) {
-            if(['iPad', 'iPhone', 'iPod'].indexOf(navigator.platform) >= 0){
-                window.location = "https://apps.apple.com/sg/app/singlife-invest-save-insure/id1485702405"; 
-            }else{
-                window.location = "https://play.google.com/store/apps/details?id=ph.com.singlife.app"; 
-            }
+    // Store Redirection
+    function storeRedirection() {
+        if (['iPad', 'iPhone', 'iPod'].indexOf(navigator.platform) >= 0) {
+            window.location = "https://apps.apple.com/sg/app/singlife-invest-save-insure/id1485702405";
+        } else {
+            window.location = "https://play.google.com/store/apps/details?id=com.singlife.mobile";
         }
     }
 
-    setTimeout(validateAppInstallation, timeToWait);
+    // DeepLink App Redirection
+    function appRedirection() {
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
 
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-        get: (searchParams, prop) => searchParams.get(prop),
-    });
-    
-    window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`);
+        window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`);
+    }
 
+    // Check DeepLink App Reachability
+    function checkDeepLinkCanReach() {
+        var request = new XMLHttpRequest();
+        request.open('GET', `singlifeph://--/${params.screen}?action=${params.action}`, false);
+        request.onload = function () {
+            if (request.status >= 200 && request.status < 400) {
+                // Success!
+                // appRedirection();
+                alert('App is installed');
+            } else {
+                alert('App is not installed');
+                // We reached our target server, but it returned an error
+                // storeRedirection();
+            }
+        };
+    }
+
+    checkDeepLinkCanReach();
 </script>
