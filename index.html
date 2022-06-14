@@ -15,6 +15,7 @@
 
     // Check DeepLink App Reachability
     function checkDeepLinkCanReach() {
+        console.log('Checking DeepLink App Reachability');
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
