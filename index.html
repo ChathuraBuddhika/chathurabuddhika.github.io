@@ -1,4 +1,5 @@
 <script>
+
     // Store Redirection
     function storeRedirection() {
         if (['iPad', 'iPhone', 'iPod'].indexOf(navigator.platform) >= 0) {
@@ -9,27 +10,19 @@
     }
 
     // DeepLink App Redirection
-    function appRedirection(screen, param) {
+    function appRedirection() {
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
         window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`);
     }
 
     // Check DeepLink App Reachability
     function checkDeepLinkCanReach() {
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-            get: (searchParams, prop) => searchParams.get(prop),
-        });
-        const request = new XMLHttpRequest();
-        request.open('GET', `singlifeph://--/${params.screen}?action=${params.action}`, false);
-        request.onload = function () {
-            if (request.status >= 200 && request.status < 400) {
-                // Success!
-                appRedirection(params.screen, params.action);
-            } else {
-                // We reached our target server, but it returned an error
-                storeRedirection();
-            }
-        };
+        appRedirection();
+        setTimeout(storeRedirection, 2000);
     }
 
     checkDeepLinkCanReach();
+
 </script>
