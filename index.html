@@ -9,17 +9,16 @@
     }
 
     // DeepLink App Redirection
-    function appRedirection() {
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-            get: (searchParams, prop) => searchParams.get(prop),
-        });
-
+    function appRedirection(screen, param) {
         window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`);
     }
 
     // Check DeepLink App Reachability
     function checkDeepLinkCanReach() {
-        var request = new XMLHttpRequest();
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        const request = new XMLHttpRequest();
         request.open('GET', `singlifeph://--/${params.screen}?action=${params.action}`, false);
         request.onload = function () {
             if (request.status >= 200 && request.status < 400) {
