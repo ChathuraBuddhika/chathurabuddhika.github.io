@@ -11,17 +11,21 @@
 
     // DeepLink App Redirection
     function appRedirection() {
-        const params = new Proxy(new URLSearchParams(window.location.search), {
+        try{
+            const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
-        });
-        window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`);
-        window.location.reload()
+            });
+            window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`);
+            window.location.reload()
+        }catch(error){
+            storeRedirection()
+        }        
     }
 
     // Check DeepLink App Reachability
     function checkDeepLinkCanReach() {
         appRedirection();
-        setTimeout(storeRedirection, 2000);
+//         setTimeout(, 2000);
     }
 
     checkDeepLinkCanReach();
