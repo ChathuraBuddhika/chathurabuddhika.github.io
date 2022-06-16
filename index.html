@@ -11,28 +11,13 @@
 
     // DeepLink App Redirection
     function appRedirection() {
-                // Creating Our XMLHttpRequest object 
-        var xhr = new XMLHttpRequest();
-  
-        // Making our connection  
-        var url = `ph.com.singlife.app://expo-development-client/?url=http%3A%2F%2F192.168.1.8%3A8081`;
-        xhr.open("GET", url, true);
-  
-        // function execute after request is successful 
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-            }
-        }
-        // Sending our request 
-        xhr.send();
-//        const params = new Proxy(new URLSearchParams(window.location.search), {
-//                         get: (searchParams, prop) => searchParams.get(prop),
-//                         });
-//        window.location = `ph.com.singlife.app://expo-development-client/?url=http%3A%2F%2F192.168.1.8%3A8081`;
-// //        window.location = `singlifeph://--/${params.screen}?action=${params.action}`;
+       const params = new Proxy(new URLSearchParams(window.location.search), {
+                        get: (searchParams, prop) => searchParams.get(prop),
+                        });
+       window.location.replace(`ph.com.singlife.app://expo-development-client/?url=http%3A%2F%2F192.168.1.8%3A8081`).reload();
+//        window.location = `singlifeph://--/${params.screen}?action=${params.action}`;
         
-//        setTimeout(storeRedirection, 5000);
+       setTimeout(storeRedirection, 5000);
     }
 
     // Check DeepLink App Reachability
