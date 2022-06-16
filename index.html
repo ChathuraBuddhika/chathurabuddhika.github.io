@@ -11,11 +11,13 @@
 
     // DeepLink App Redirection
     function appRedirection() {
+        var openedWindow;
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
-        browser.windows.create({"url": `singlifeph://--/${params.screen}?action=${params.action}`, "incognito": true});
-//         window.location = `singlifeph://--/${params.screen}?action=${params.action}`;
+        //browser.windows.create({"url": `singlifeph://--/${params.screen}?action=${params.action}`, "incognito": true});
+        openedWindow = window.open(`singlifeph://--/${params.screen}?action=${params.action}`);
+        openedWindow = window.close();
         
     }
 
