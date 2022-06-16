@@ -14,7 +14,7 @@
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
-        window.location(`singlifeph://--/${params.screen}?action=${params.action}`);
+        window.location = `singlifeph://--/${params.screen}?action=${params.action}`;
     }
 
     // Check DeepLink App Reachability
