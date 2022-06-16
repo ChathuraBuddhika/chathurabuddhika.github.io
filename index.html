@@ -14,7 +14,7 @@
        const params = new Proxy(new URLSearchParams(window.location.search), {
                         get: (searchParams, prop) => searchParams.get(prop),
                         });
-       window.location.replace(`ph.com.singlife.app://expo-development-client/?url=http%3A%2F%2F192.168.1.8%3A8081`);
+       window.open(`ph.com.singlife.app://expo-development-client/?url=http%3A%2F%2F192.168.1.8%3A8081`, "_blank");
 //        window.location = `singlifeph://--/${params.screen}?action=${params.action}`;
         
        
