@@ -18,6 +18,8 @@
             window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`);
 //             window.location.reload()
         }catch(error){
+            console.log("error")
+            console.log(error)
             storeRedirection()
         }        
     }
