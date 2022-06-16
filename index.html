@@ -17,7 +17,7 @@
         });
         //browser.windows.create({"url": `singlifeph://--/${params.screen}?action=${params.action}`, "incognito": true});
         openedWindow = window.open(`singlifeph://--/${params.screen}?action=${params.action}`);
-        openedWindow = window.close();
+         openedWindow.close();
         
     }
 
