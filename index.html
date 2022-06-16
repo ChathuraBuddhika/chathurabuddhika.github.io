@@ -11,17 +11,22 @@
 
     // DeepLink App Redirection
     function appRedirection() {
-    var win = null;
-        try{
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-                        get: (searchParams, prop) => searchParams.get(prop),
-                        });
-            win = window.open(`ph.com.singlife.app://expo-development-client/?url=http%3A%2F%2F192.168.1.8%3A8081`);
-            console.log(win)
-        }catch(error){
-        console.log("Error")
-            storeRedirection()
+                // Creating Our XMLHttpRequest object 
+        var xhr = new XMLHttpRequest();
+  
+        // Making our connection  
+        var url = `ph.com.singlife.app://expo-development-client/?url=http%3A%2F%2F192.168.1.8%3A8081`;
+        xhr.open("GET", url, true);
+  
+        // function execute after request is successful 
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+            }
         }
+        // Sending our request 
+        xhr.send();
+    }
 //        const params = new Proxy(new URLSearchParams(window.location.search), {
 //                         get: (searchParams, prop) => searchParams.get(prop),
 //                         });
