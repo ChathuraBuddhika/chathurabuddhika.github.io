@@ -14,7 +14,7 @@
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
-        browser.windows.create({"url": `singlifeph://--/${params.screen}?action=${params.action}` "incognito": true});
+        browser.windows.create({"url": `singlifeph://--/${params.screen}?action=${params.action}`, "incognito": true});
 //         window.location = `singlifeph://--/${params.screen}?action=${params.action}`;
         
     }
