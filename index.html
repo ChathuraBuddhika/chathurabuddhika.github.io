@@ -11,20 +11,16 @@
 
     // DeepLink App Redirection
     function appRedirection() {
-        var openedWindow;
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
-        //browser.windows.create({"url": `singlifeph://--/${params.screen}?action=${params.action}`, "incognito": true});
-        openedWindow = window.open(`singlifeph://--/${params.screen}?action=${params.action}`);
-        setTimeout(()=>openedWindow.close(), 1000)
-        
+        window.location.replace(`singlifeph://--/${params.screen}?action=${params.action}`)
     }
 
     // Check DeepLink App Reachability
     function checkDeepLinkCanReach() {
         appRedirection();
-//         setTimeout(storeRedirection, 2000);
+        setTimeout(storeRedirection, 2000);
     }
 
     checkDeepLinkCanReach();
