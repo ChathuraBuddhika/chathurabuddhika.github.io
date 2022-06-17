@@ -49,8 +49,20 @@
 //             storeRedirection()
 //           }
 //         })
+         var change = false;
+        setTimeout(() => {
+          if (!change) {
+            storeRedirection();
+          }
+        }, 3000);
         appRedirection();
-        setTimeout(storeRedirection, 5000);
+        //handle event to check app installed or not
+        window.onblur = function () {
+            change = true;
+        };
+        window.onfocus = function(){
+            change = false;
+        }
     }
 
     checkDeepLinkCanReach();
