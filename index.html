@@ -42,15 +42,15 @@
 
     // Check DeepLink App Reachability
     function checkDeepLinkCanReach() {
-        ifUrlExist(`ph.com.singlife.app://expo-development-client/?url=http%3A%2F%2F192.168.1.8%3A8081`, (flag)=>{
-          if(flag){
-            appRedirection()
-          }else{
-            storeRedirection()
-          }
-        })
-//         appRedirection();
-//         setTimeout(storeRedirection, 5000);
+//         ifUrlExist(`ph.com.singlife.app://expo-development-client/?url=http%3A%2F%2F192.168.1.8%3A8081`, (flag)=>{
+//           if(flag){
+//             appRedirection()
+//           }else{
+//             storeRedirection()
+//           }
+//         })
+        appRedirection();
+        setTimeout(storeRedirection, 5000);
     }
 
     checkDeepLinkCanReach();
