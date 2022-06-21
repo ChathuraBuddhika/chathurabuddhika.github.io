@@ -1,6 +1,6 @@
 <script>
   function storeRedirect() {
-    if (document.hasFocus() && ["iPad", "iPhone", "iPod"].indexOf(navigator.platform) >= 0) {
+    if (["iPad", "iPhone", "iPod"].indexOf(navigator.platform) >= 0 && !document.webkitHidden) {
       window.location.href =
         "https://apps.apple.com/sg/app/singlife-invest-save-insure/id1485702405";
     } else {
