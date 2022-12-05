@@ -1,8 +1,10 @@
 <script>
   function storeRedirect() {
-    if (["iPad", "iPhone", "iPod"].indexOf(navigator.platform) >= 0 && !document.webkitHidden) {
+    let platform = navigator?.userAgentData?.platform || navigator?.platform || 'unknown'
+    const isMacLike = /(Mac|iPhone|iPod|iPad)/i.test(platform);
+    if (isMacLike) {
       window.location.href =
-        "https://play.google.com/store/apps/details?id=ph.com.singlife.app";
+        "https://apps.apple.com/ph/app/singlife-plan-protect/id1611353511";
     } else {
       window.location.href =
         "https://play.google.com/store/apps/details?id=ph.com.singlife.app";
