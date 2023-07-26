@@ -12,25 +12,23 @@
   }
 
   function appRedirect() {
-    const params = new Proxy(new URLSearchParams(window.location.search), {
+    const params = new URLSearchParams(window.location.search);
+    const proxy = new Proxy(params, {
       get: (searchParams, prop) => searchParams.get(prop),
     });
 
-    const { screen } = params;
+    const { screen } = proxy;
     let deeplink = `singlifeph://${screen}?`;
-    let keys = Object.keys(params);
 
-    keys.forEach((key, i) => {
+    for (const [key, value] of params.entries()) {
       if (key !== 'screen') {
-        deeplink += `${key}=${params[key]}&`;
+        deeplink += `${key}=${value}&`;
       }
-    });
+    }
 
     if (deeplink.charAt(deeplink.length -1) === '&') {
       deeplink = deeplink.substring(0, deeplink.length - 1);
     }
-
-    console.log(deeplink);
 
     window.location.href = deeplink;
   }
@@ -39,7 +37,7 @@
     var now = new Date().valueOf();
     setTimeout(function () {
       if (new Date().valueOf() - now > 100) return;
-      // storeRedirect();
+      storeRedirect();
     }, 50);
     appRedirect();
   }
