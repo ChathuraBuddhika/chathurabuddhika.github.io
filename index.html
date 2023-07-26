@@ -16,8 +16,21 @@
       get: (searchParams, prop) => searchParams.get(prop),
     });
 
-    const { screen, action } = params;
-    window.location.href = `singlifeph://${screen}?action=${action}`;
+    const { screen } = params;
+    let deeplink = `singlifeph://${screen}?`;
+    let keys = Object.keys(params);
+
+    keys.forEach((key, i) => {
+      if (key !== 'screen') {
+        deeplink += `${key}=${params[key]}&`;
+      }
+    });
+
+    if (deeplink.charAt(deeplink.length -1) === '&') {
+      deeplink = deeplink.substring(0, deeplink.length - 1);
+    }
+
+    window.location.href = deeplink;
   }
 
   function runDeeplink() {
