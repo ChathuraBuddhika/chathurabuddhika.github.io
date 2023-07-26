@@ -30,16 +30,14 @@
       deeplink = deeplink.substring(0, deeplink.length - 1);
     }
 
-    console.log(deeplink);
-
-    // window.location.href = deeplink;
+    window.location.href = deeplink;
   }
 
   function runDeeplink() {
     var now = new Date().valueOf();
     setTimeout(function () {
       if (new Date().valueOf() - now > 100) return;
-      storeRedirect();
+      // storeRedirect();
     }, 50);
     appRedirect();
   }
